@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-
+""" Usuarios """
 class User(db.Model):
     __tablename__="users"
     id = db.Column(db.Integer, primary_key=True)
@@ -25,7 +25,7 @@ class User(db.Model):
             "email": self.email,
           
         }
-    
+    """ funcion que serializa con favoritos """
     def serialize_with_favoritos(self):
         personajes_favoritos = [personaje.serialize() for personaje in self.personajes_favoritos]
         planetas_favoritos= [planeta.serialize() for planeta in self.planetas_favoritos]
@@ -51,7 +51,7 @@ class User(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
+""" Personas """
 class People (db.Model):
     __tablename__="people"
     id = db.Column(db.Integer, primary_key=True)
@@ -81,7 +81,7 @@ class People (db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
+""" Planetas """
 class Planets (db.Model):
     __tablename__="planet"
     id = db.Column(db.Integer, primary_key=True)
@@ -107,7 +107,7 @@ class Planets (db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
+""" personajes favoritos """
 class Favorite_Characters (db.Model):
     __tablename__="favoritos_personajes"
     id = db.Column(db.Integer, primary_key=True)
@@ -129,7 +129,7 @@ class Favorite_Characters (db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
+""" planets favoritos """
 class Favorite_Planets (db.Model):
     __tablename__="favoritos_planetas"
     id = db.Column(db.Integer, primary_key=True)
